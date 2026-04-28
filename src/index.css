@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, monospace;
+
+  --color-rosewater: #f5e0dc;
+  --color-flamingo: #f2cdcd;
+  --color-pink: #f5c2e7;
+  --color-mauve: #cba6f7;
+  --color-red: #f38ba8;
+  --color-maroon: #eba0ac;
+  --color-peach: #fab387;
+  --color-yellow: #f9e2af;
+  --color-green: #a6e3a1;
+  --color-teal: #94e2d5;
+  --color-sky: #89dceb;
+  --color-sapphire: #74c7ec;
+  --color-blue: #89b4fa;
+  --color-lavender: #b4befe;
+  --color-text: #cdd6f4;
+  --color-subtext1: #bac2de;
+  --color-subtext0: #a6adc8;
+  --color-overlay2: #9399b2;
+  --color-overlay1: #7f849c;
+  --color-overlay0: #6c7086;
+  --color-surface2: #585b70;
+  --color-surface1: #45475a;
+  --color-surface0: #313244;
+  --color-base: #1e1e2e;
+  --color-mantle: #181825;
+  --color-crust: #11111b;
+}
+
+@layer base {
+  body {
+    @apply bg-base text-text font-sans antialiased;
+  }
+
+  /* Custom Scrollbar for Catppuccin */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-mantle;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface1 rounded-full hover:bg-surface2 transition-colors;
+  }
+}
+
+@layer components {
+  .markdown-body {
+    @apply text-text leading-relaxed;
+  }
+
+  .markdown-body h1 { @apply text-4xl font-bold mb-6 mt-8 text-mauve border-b border-surface1 pb-2; }
+  .markdown-body h2 { @apply text-3xl font-bold mb-4 mt-6 text-blue border-b border-surface0 pb-1; }
+  .markdown-body h3 { @apply text-2xl font-bold mb-3 mt-5 text-sapphire; }
+  .markdown-body h4 { @apply text-xl font-bold mb-2 mt-4 text-sky; }
+  .markdown-body h5 { @apply text-lg font-bold mb-2 mt-4 text-teal; }
+  .markdown-body h6 { @apply text-base font-bold mb-2 mt-4 text-green; }
+
+  .markdown-body p { @apply mb-4; }
+  .markdown-body strong { @apply font-bold text-peach; }
+  .markdown-body em { @apply italic text-rosewater; }
+  .markdown-body del { @apply line-through opacity-60; }
+
+  .markdown-body code { @apply font-mono bg-surface0 px-1.5 py-0.5 rounded text-flamingo text-sm; }
+  .markdown-body pre { @apply bg-mantle p-4 rounded-lg mb-4 overflow-x-auto border border-surface0; }
+  .markdown-body pre code { @apply bg-transparent p-0 text-text block; }
+
+  .markdown-body ul { @apply list-disc pl-6 mb-4 space-y-1; }
+  .markdown-body ol { @apply list-decimal pl-6 mb-4 space-y-1; }
+  .markdown-body li { @apply mb-1; }
+  .markdown-body li > ul, .markdown-body li > ol { @apply mt-1 mb-0; }
+
+  .markdown-body blockquote { @apply border-l-4 border-mauve bg-surface0/30 pl-4 py-2 italic mb-4 rounded-r; }
+
+  .markdown-body table { @apply w-full border-collapse mb-6 overflow-hidden rounded-lg border border-surface0; }
+  .markdown-body th { @apply bg-surface1 text-left p-3 font-bold border border-surface0 text-lavender; }
+  .markdown-body td { @apply p-3 border border-surface0; }
+  .markdown-body tr:nth-child(even) { @apply bg-surface0/50; }
+
+  .markdown-body hr { @apply border-surface1 my-8; }
+
+  .markdown-body input[type="checkbox"] { @apply mr-2 accent-mauve; }
+
+  /* Mermaid styles */
+  .mermaid {
+    @apply bg-mantle p-4 rounded-lg mb-4 flex justify-center overflow-x-auto border border-surface0;
+  }
+}
+
+/* PDF Export Specific Styles */
+@media print {
+  .markdown-body {
+    color: #000 !important;
+    background: #fff !important;
+  }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #000 !important; border-color: #eee !important; }
+  .markdown-body pre { background: #f5f5f5 !important; border-color: #ddd !important; }
+  .markdown-body code { background: #f0f0f0 !important; color: #d00 !important; }
+}
